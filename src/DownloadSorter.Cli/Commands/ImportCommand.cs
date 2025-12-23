@@ -79,7 +79,7 @@ public class ImportCommand : BaseCommand<ImportCommand.Settings>
 
         if (files.Count == 0)
         {
-            AnsiConsole.MarkupLine("[green]✓[/] No files to import.");
+            AnsiConsole.MarkupLine("[green]+[/] No files to import.");
             return 0;
         }
 

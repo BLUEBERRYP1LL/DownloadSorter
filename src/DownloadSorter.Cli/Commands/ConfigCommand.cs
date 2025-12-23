@@ -49,7 +49,7 @@ public class ConfigCommand : BaseCommand<ConfigCommand.Settings>
 
     private int ShowConfig(AppSettings appSettings)
     {
-        AnsiConsole.Write(new Rule("[bold blue]⚙️ Configuration[/]").LeftJustified());
+        AnsiConsole.Write(new Rule("[bold blue]Configuration[/]").LeftJustified());
         AnsiConsole.WriteLine();
 
         var table = new Table()
@@ -201,7 +201,7 @@ public class ConfigCommand : BaseCommand<ConfigCommand.Settings>
             appSettings.Save();
 
             var newValue = GetSettingValue(appSettings, key);
-            AnsiConsole.MarkupLine($"[green]✓[/] {key}: {oldValue} → [green]{newValue}[/]");
+            AnsiConsole.MarkupLine($"[green]+[/] {key}: {oldValue} -> [green]{newValue}[/]");
             return 0;
         }
         catch (FormatException)
@@ -241,7 +241,7 @@ public class ConfigCommand : BaseCommand<ConfigCommand.Settings>
 
         defaults.Save();
 
-        AnsiConsole.MarkupLine("[green]✓[/] Settings reset to defaults.");
+        AnsiConsole.MarkupLine("[green]+[/] Settings reset to defaults.");
         return 0;
     }
 

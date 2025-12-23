@@ -158,7 +158,7 @@ public class DashboardCommand : BaseCommand<DashboardCommand.Settings>
 
     private static void RenderHeader()
     {
-        var title = new Rule("[bold blue]📁 DownloadSorter Dashboard[/]")
+        var title = new Rule("[bold blue]DownloadSorter Dashboard[/]")
             .LeftJustified()
             .RuleStyle(Style.Parse("blue"));
         AnsiConsole.Write(title);
@@ -187,15 +187,15 @@ public class DashboardCommand : BaseCommand<DashboardCommand.Settings>
         statsTable.AddColumn("");
         statsTable.AddColumn(new TableColumn("").RightAligned());
 
-        statsTable.AddRow("[bold]📊 Today's Stats[/]", "");
+        statsTable.AddRow("[bold]Today's Stats[/]", "");
         statsTable.AddRow("", "");
         statsTable.AddRow($"  {Theme.IconSuccess} Sorted", $"[green]{stats.Success}[/]");
         statsTable.AddRow($"  {Theme.IconWarning} Skipped", $"[yellow]{stats.Skipped}[/]");
         statsTable.AddRow($"  {Theme.IconFailed} Failed", stats.Failed > 0 ? $"[red]{stats.Failed}[/]" : "[dim]0[/]");
         statsTable.AddRow("", "");
-        statsTable.AddRow("  📀 Biggest", FormatSize(stats.BiggestFileSize));
+        statsTable.AddRow("  Biggest", FormatSize(stats.BiggestFileSize));
         statsTable.AddRow("", "");
-        statsTable.AddRow("[bold]⚙️ Settings[/]", "");
+        statsTable.AddRow("[bold]Settings[/]", "");
         statsTable.AddRow("", "");
         statsTable.AddRow("  Settle Time", $"[dim]{appSettings.SettleTimeSeconds}s[/]");
         statsTable.AddRow("  Big File", $"[dim]>{FormatSize(appSettings.BigFileThreshold)}[/]");
@@ -209,7 +209,7 @@ public class DashboardCommand : BaseCommand<DashboardCommand.Settings>
 
         if (pending.Count > 0)
         {
-            inboxContent.AddRow($"[yellow bold]📥 {pending.Count} files waiting[/]", "");
+            inboxContent.AddRow($"[yellow bold]{pending.Count} files waiting[/]", "");
             inboxContent.AddRow("", "");
             foreach (var (name, size) in pending.Take(8))
             {
@@ -355,13 +355,13 @@ public class DashboardCommand : BaseCommand<DashboardCommand.Settings>
         }
 
         // Add special folders
-        table.AddRow("📀 [orange1]Big Files[/]",
+        table.AddRow($"{Theme.GetCategoryIcon("80_Big_Files")} [orange1]Big Files[/]",
             todayCounts.GetValueOrDefault("80_Big_Files", 0) > 0
                 ? $"[orange1]{todayCounts["80_Big_Files"]}[/]"
                 : "[dim]0[/]",
             $"[dim]Files > {FormatSize(appSettings.BigFileThreshold)}[/]");
 
-        table.AddRow("❓ [grey]Unsorted[/]",
+        table.AddRow($"{Theme.GetCategoryIcon("_UNSORTED")} [grey]Unsorted[/]",
             todayCounts.GetValueOrDefault("_UNSORTED", 0) > 0
                 ? $"[grey]{todayCounts["_UNSORTED"]}[/]"
                 : "[dim]0[/]",
@@ -378,7 +378,7 @@ public class DashboardCommand : BaseCommand<DashboardCommand.Settings>
             "[bold]Keyboard Shortcuts[/]\n\n" +
             "  [blue]1/2/3[/]     Switch tabs\n" +
             "  [blue]Tab[/]       Next tab\n" +
-            "  [blue]↑/↓[/]       Navigate (Activity tab)\n" +
+            "  [blue]Up/Down[/]   Navigate (Activity tab)\n" +
             "  [blue]s[/]         Sort now\n" +
             "  [blue]r[/]         Refresh\n" +
             "  [blue]?/h[/]       Toggle help\n" +

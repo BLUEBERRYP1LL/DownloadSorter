@@ -38,7 +38,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
 
     private int ListRules(AppSettings appSettings)
     {
-        AnsiConsole.Write(new Rule("[bold blue]📋 Category Rules[/]").LeftJustified());
+        AnsiConsole.Write(new Rule("[bold blue]Category Rules[/]").LeftJustified());
         AnsiConsole.WriteLine();
 
         var table = new Table()
@@ -87,7 +87,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
 
     private int AddRule(AppSettings appSettings)
     {
-        AnsiConsole.Write(new Rule("[bold blue]➕ Add Category Rule[/]").LeftJustified());
+        AnsiConsole.Write(new Rule("[bold blue]Add Category Rule[/]").LeftJustified());
         AnsiConsole.WriteLine();
 
         // Select category
@@ -142,7 +142,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
             AnsiConsole.MarkupLine($"\n[yellow]Warning:[/] These extensions already exist in other rules:");
             foreach (var (ext, cat) in conflicts)
             {
-                AnsiConsole.MarkupLine($"  {ext} → {Theme.FormatCategoryName(cat)}");
+                AnsiConsole.MarkupLine($"  {ext} -> {Theme.FormatCategoryName(cat)}");
             }
             AnsiConsole.WriteLine();
 
@@ -157,7 +157,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
         appSettings.Categories.Add(rule);
         appSettings.Save();
 
-        AnsiConsole.MarkupLine($"\n[green]✓[/] Rule added: {extensions.Count} extensions → [blue]{folder}[/]");
+        AnsiConsole.MarkupLine($"\n[green]+[/] Rule added: {extensions.Count} extensions -> [blue]{folder}[/]");
         return 0;
     }
 
@@ -178,7 +178,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
 
         var rule = appSettings.Categories[idx];
 
-        AnsiConsole.Write(new Rule($"[bold blue]✏️ Edit Rule #{index}[/]").LeftJustified());
+        AnsiConsole.Write(new Rule($"[bold blue]Edit Rule #{index}[/]").LeftJustified());
         AnsiConsole.WriteLine();
 
         AnsiConsole.MarkupLine($"[bold]Category:[/] {Theme.GetCategoryIcon(rule.Category)} {Theme.FormatCategoryName(rule.Category)}");
@@ -210,7 +210,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
         }
 
         appSettings.Save();
-        AnsiConsole.MarkupLine($"\n[green]✓[/] Rule updated.");
+        AnsiConsole.MarkupLine($"\n[green]+[/] Rule updated.");
         return 0;
     }
 
@@ -243,13 +243,13 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
         appSettings.Categories.RemoveAt(idx);
         appSettings.Save();
 
-        AnsiConsole.MarkupLine($"\n[green]✓[/] Rule deleted.");
+        AnsiConsole.MarkupLine($"\n[green]+[/] Rule deleted.");
         return 0;
     }
 
     private int TestRule(AppSettings appSettings)
     {
-        AnsiConsole.Write(new Rule("[bold blue]🧪 Test File Routing[/]").LeftJustified());
+        AnsiConsole.Write(new Rule("[bold blue]Test File Routing[/]").LeftJustified());
         AnsiConsole.WriteLine();
 
         while (true)
@@ -264,7 +264,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
             var ext = Path.GetExtension(filename);
             if (string.IsNullOrEmpty(ext))
             {
-                AnsiConsole.MarkupLine("[yellow]No extension found.[/] Would go to → [grey]_UNSORTED[/]");
+                AnsiConsole.MarkupLine("[yellow]No extension found.[/] Would go to [grey]_UNSORTED[/]");
                 continue;
             }
 
@@ -276,7 +276,7 @@ public class RulesCommand : BaseCommand<RulesCommand.Settings>
             var icon = Theme.GetCategoryIcon(category);
             var color = Theme.GetCategoryColor(category);
 
-            AnsiConsole.MarkupLine($"Extension [blue]{ext}[/] → {icon} [{color}]{Theme.FormatCategoryName(category)}[/]");
+            AnsiConsole.MarkupLine($"Extension [blue]{ext}[/] -> {icon} [{color}]{Theme.FormatCategoryName(category)}[/]");
 
             // Check if big file routing would apply
             if (appSettings.EnableBigFileRouting)

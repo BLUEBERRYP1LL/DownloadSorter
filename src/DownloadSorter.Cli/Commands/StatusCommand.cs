@@ -57,7 +57,7 @@ public class StatusCommand : BaseCommand<StatusCommand.Settings>
 
         if (!inboxExists)
         {
-            AnsiConsole.MarkupLine("[red]⚠ Inbox folder doesn't exist![/]");
+            AnsiConsole.MarkupLine("[red]! Inbox folder doesn't exist![/]");
         }
 
         // Today's stats

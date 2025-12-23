@@ -84,8 +84,8 @@ public class InitCommand : Command<InitCommand.Settings>
         // Save config
         appSettings.Save();
 
-        AnsiConsole.MarkupLine("\n[green]✓[/] Folder structure created");
-        AnsiConsole.MarkupLine($"[green]✓[/] Config saved to [dim]{AppSettings.DefaultConfigPath}[/]");
+        AnsiConsole.MarkupLine("\n[green]+[/] Folder structure created");
+        AnsiConsole.MarkupLine($"[green]+[/] Config saved to [dim]{AppSettings.DefaultConfigPath}[/]");
         AnsiConsole.MarkupLine($"\n[bold]Inbox path:[/] [blue]{appSettings.InboxPath}[/]");
         AnsiConsole.MarkupLine("\nSet your browser's download folder to the INBOX path above.");
         AnsiConsole.MarkupLine("Then run [blue]sorter status[/] to check everything is working.\n");

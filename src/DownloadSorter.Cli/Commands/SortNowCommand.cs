@@ -126,11 +126,11 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
 
     private void RenderLoopHeader(List<string> sourceFolders, int interval)
     {
-        var watchList = string.Join("\n", sourceFolders.Select(f => $"  📂 {f}"));
+        var watchList = string.Join("\n", sourceFolders.Select(f => $"  [blue]>[/] {f}"));
 
         var header = new Panel(
             new Markup($"[bold]Watching {sourceFolders.Count} folder(s):[/]\n{watchList}\n\n" +
-                       $"[bold]⏱️  Interval:[/] {interval}s\n" +
+                       $"[bold]Interval:[/] {interval}s\n" +
                        $"[dim]Press Ctrl+C to stop[/]"))
             .Header("[bold blue]DownloadSorter Loop Mode[/]")
             .Border(BoxBorder.Rounded)
@@ -157,7 +157,7 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
             .AddColumn("")
             .AddColumn("");
 
-        table.AddRow("[bold]Status[/]", $"[green]●[/] Running");
+        table.AddRow("[bold]Status[/]", $"[green]*[/] Running");
         table.AddRow("Uptime", $"[blue]{elapsedStr}[/]");
         table.AddRow("Sorted", $"[green]{sorted}[/]");
         table.AddRow("Failed", failed > 0 ? $"[red]{failed}[/]" : "[dim]0[/]");
@@ -186,7 +186,7 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
 
         if (allFiles.Count == 0)
         {
-            AnsiConsole.MarkupLine("[green]✓[/] All folders empty. Nothing to sort.");
+            AnsiConsole.MarkupLine("[green]+[/] All folders empty. Nothing to sort.");
             return 0;
         }
 
@@ -200,7 +200,7 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
                 if (count > 0)
                 {
                     var shortPath = folder.Length > 50 ? "..." + folder[^47..] : folder;
-                    AnsiConsole.MarkupLine($"  📂 {Markup.Escape(shortPath)}: [blue]{count}[/] files");
+                    AnsiConsole.MarkupLine($"  [blue]>[/] {Markup.Escape(shortPath)}: [blue]{count}[/] files");
                 }
             }
             AnsiConsole.WriteLine();
@@ -218,7 +218,7 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
         var (success, failed) = SortFromFolders(appSettings, sourceFolders, showProgress: true);
 
         AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine($"[green]✓ Sorted:[/] {success}  [red]✗ Failed:[/] {failed}");
+        AnsiConsole.MarkupLine($"[green]+ Sorted:[/] {success}  [red]x Failed:[/] {failed}");
 
         return failed > 0 ? 1 : 0;
     }
@@ -266,7 +266,7 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
                 {
                     var fileName = Path.GetFileName(result.DestPath) ?? "unknown";
                     var icon = GetCategoryIcon(result.Category ?? "_UNSORTED");
-                    AnsiConsole.MarkupLine($"[green]✓[/] {icon} {Markup.Escape(fileName)} → [blue]{result.Category}[/]");
+                    AnsiConsole.MarkupLine($"[green]+[/] {icon} {Markup.Escape(fileName)} -> [blue]{result.Category}[/]");
                 }
             }
             else if (!result.Skipped)
@@ -274,7 +274,7 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
                 failed++;
                 if (showProgress)
                 {
-                    AnsiConsole.MarkupLine($"[red]✗[/] {Markup.Escape(result.Error ?? "Unknown error")}");
+                    AnsiConsole.MarkupLine($"[red]x[/] {Markup.Escape(result.Error ?? "Unknown error")}");
                 }
             }
         }
@@ -312,14 +312,14 @@ public class SortNowCommand : BaseCommand<SortNowCommand.Settings>
 
     private static string GetCategoryIcon(string category) => category switch
     {
-        "10_Documents" => "📄",
-        "20_Executables" => "⚙️",
-        "30_Archives" => "📦",
-        "40_Media" => "🎬",
-        "50_Code" => "💻",
-        "60_ISOs" => "💿",
-        "80_Big_Files" => "📀",
-        "_UNSORTED" => "❓",
-        _ => "📁"
+        "10_Documents" => "[blue]DOC[/]",
+        "20_Executables" => "[red]EXE[/]",
+        "30_Archives" => "[green]ZIP[/]",
+        "40_Media" => "[fuchsia]MED[/]",
+        "50_Code" => "[yellow]COD[/]",
+        "60_ISOs" => "[purple]ISO[/]",
+        "80_Big_Files" => "[orange1]BIG[/]",
+        "_UNSORTED" => "[grey]???[/]",
+        _ => "[blue]>[/]"
     };
 }

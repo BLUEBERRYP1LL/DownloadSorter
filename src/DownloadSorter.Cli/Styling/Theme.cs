@@ -25,29 +25,29 @@ public static class Theme
     public static Style Accent => new(Color.Blue);
     public static Style Highlight => new(Color.Cyan1);
 
-    // Status icons
-    public const string IconSuccess = "[green]✓[/]";
-    public const string IconFailed = "[red]✗[/]";
-    public const string IconWarning = "[yellow]⚠[/]";
-    public const string IconPending = "[yellow]●[/]";
-    public const string IconRunning = "[green]●[/]";
-    public const string IconStopped = "[red]●[/]";
-    public const string IconInfo = "[blue]ℹ[/]";
+    // Status icons (ASCII-safe)
+    public const string IconSuccess = "[green]+[/]";
+    public const string IconFailed = "[red]x[/]";
+    public const string IconWarning = "[yellow]![/]";
+    public const string IconPending = "[yellow]*[/]";
+    public const string IconRunning = "[green]*[/]";
+    public const string IconStopped = "[red]*[/]";
+    public const string IconInfo = "[blue]i[/]";
 
-    // Category icons
+    // Category icons (ASCII-safe)
     public static string GetCategoryIcon(string category) => category switch
     {
-        "10_Documents" => "📄",
-        "20_Executables" => "⚙️",
-        "30_Archives" => "📦",
-        "40_Media" => "🎬",
-        "50_Code" => "💻",
-        "60_ISOs" => "💿",
-        "80_Big_Files" => "📀",
-        "00_INBOX" => "📥",
-        "00_PINNED" => "📌",
-        "_UNSORTED" => "❓",
-        _ => "📁"
+        "10_Documents" => "[blue]DOC[/]",
+        "20_Executables" => "[red]EXE[/]",
+        "30_Archives" => "[green]ZIP[/]",
+        "40_Media" => "[fuchsia]MED[/]",
+        "50_Code" => "[yellow]COD[/]",
+        "60_ISOs" => "[purple]ISO[/]",
+        "80_Big_Files" => "[orange1]BIG[/]",
+        "00_INBOX" => "[blue]IN[/]",
+        "00_PINNED" => "[yellow]PIN[/]",
+        "_UNSORTED" => "[grey]???[/]",
+        _ => "[blue]>[/]"
     };
 
     // Category display color

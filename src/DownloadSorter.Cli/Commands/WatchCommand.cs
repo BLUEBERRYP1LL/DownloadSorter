@@ -36,7 +36,7 @@ public class WatchCommand : BaseCommand<WatchCommand.Settings>
 
     private int ListFolders(AppSettings appSettings)
     {
-        AnsiConsole.Write(new Rule("[bold blue]📂 Watch Folders[/]").LeftJustified());
+        AnsiConsole.Write(new Rule("[bold blue]Watch Folders[/]").LeftJustified());
         AnsiConsole.WriteLine();
 
         var table = new Table()
@@ -56,8 +56,8 @@ public class WatchCommand : BaseCommand<WatchCommand.Settings>
         var inboxFiles = inboxExists ? Directory.GetFiles(appSettings.InboxPath).Length : 0;
         table.AddRow(
             "[dim]0[/]",
-            $"📥 {Markup.Escape(appSettings.InboxPath)} [dim](default)[/]",
-            inboxExists ? "[green]✓[/]" : "[red]✗[/]",
+            $"[blue]IN[/] {Markup.Escape(appSettings.InboxPath)} [dim](default)[/]",
+            inboxExists ? "[green]+[/]" : "[red]x[/]",
             inboxFiles > 0 ? $"[yellow]{inboxFiles}[/]" : "[dim]0[/]"
         );
 
@@ -69,8 +69,8 @@ public class WatchCommand : BaseCommand<WatchCommand.Settings>
 
             table.AddRow(
                 $"[dim]{idx}[/]",
-                $"📂 {Markup.Escape(folder)}",
-                exists ? "[green]✓[/]" : "[red]missing[/]",
+                $"[blue]>[/] {Markup.Escape(folder)}",
+                exists ? "[green]+[/]" : "[red]missing[/]",
                 fileCount > 0 ? $"[yellow]{fileCount}[/]" : "[dim]0[/]"
             );
             idx++;
@@ -189,7 +189,7 @@ public class WatchCommand : BaseCommand<WatchCommand.Settings>
         appSettings.Save();
 
         var fileCount = Directory.GetFiles(path).Length;
-        AnsiConsole.MarkupLine($"[green]✓[/] Added: {Markup.Escape(path)}");
+        AnsiConsole.MarkupLine($"[green]+[/] Added: {Markup.Escape(path)}");
         if (fileCount > 0)
         {
             AnsiConsole.MarkupLine($"  [yellow]{fileCount}[/] files found. Run [blue]sorter sort[/] to process them.");
@@ -226,7 +226,7 @@ public class WatchCommand : BaseCommand<WatchCommand.Settings>
             appSettings.WatchFolders.RemoveAt(index);
             appSettings.Save();
 
-            AnsiConsole.MarkupLine($"[green]✓[/] Removed: {Markup.Escape(folder)}");
+            AnsiConsole.MarkupLine($"[green]+[/] Removed: {Markup.Escape(folder)}");
             return 0;
         }
 
@@ -244,7 +244,7 @@ public class WatchCommand : BaseCommand<WatchCommand.Settings>
         appSettings.WatchFolders.RemoveAt(matchIndex);
         appSettings.Save();
 
-        AnsiConsole.MarkupLine($"[green]✓[/] Removed: {Markup.Escape(path)}");
+        AnsiConsole.MarkupLine($"[green]+[/] Removed: {Markup.Escape(path)}");
         return 0;
     }
 }

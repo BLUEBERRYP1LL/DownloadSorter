@@ -143,7 +143,7 @@ public class BrowseCommand : BaseCommand<BrowseCommand.Settings>
         AnsiConsole.Cursor.SetPosition(0, 0);
 
         // Header
-        var title = new Rule("[bold blue]📁 File Browser[/]")
+        var title = new Rule("[bold blue]File Browser[/]")
             .LeftJustified()
             .RuleStyle(Style.Parse("blue"));
         AnsiConsole.Write(title);
@@ -219,7 +219,7 @@ public class BrowseCommand : BaseCommand<BrowseCommand.Settings>
                 else if (isSelected)
                 {
                     filesTable.AddRow(
-                        $"[bold]▸ {Markup.Escape(name)}[/]",
+                        $"[bold]> {Markup.Escape(name)}[/]",
                         $"[dim]{FormatSize(file.Length)}[/]"
                     );
                 }
@@ -249,8 +249,8 @@ public class BrowseCommand : BaseCommand<BrowseCommand.Settings>
         // Status bar
         AnsiConsole.WriteLine();
         var hotkeys = Theme.HotkeyBar(
-            ("↑↓", "nav"),
-            ("←→", "focus"),
+            ("jk", "nav"),
+            ("<>", "focus"),
             ("Enter", "open"),
             ("p", "pin"),
             ("m", "move"),

@@ -62,15 +62,15 @@ public class HistoryCommand : BaseCommand<HistoryCommand.Settings>
         {
             var statusMarkup = record.Status switch
             {
-                Core.Data.SortStatus.Success => "[green]✓[/]",
-                Core.Data.SortStatus.Skipped => "[yellow]⊘[/]",
-                Core.Data.SortStatus.Failed => "[red]✗[/]",
+                Core.Data.SortStatus.Success => "[green]+[/]",
+                Core.Data.SortStatus.Skipped => "[yellow]~[/]",
+                Core.Data.SortStatus.Failed => "[red]x[/]",
                 _ => "?"
             };
 
             var nameDisplay = record.OriginalName == record.FinalName
                 ? record.FinalName
-                : $"{record.OriginalName} → {record.FinalName}";
+                : $"{record.OriginalName} -> {record.FinalName}";
 
             // Truncate long names
             if (nameDisplay.Length > 40)
