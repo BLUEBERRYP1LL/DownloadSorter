@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0",
+    "description": "Auto-sort your downloads into organized folders",
+    "homepage": "https://github.com/BLUEBERRYP1LL/DownloadSorter",
+    "license": "MIT",
+    "url": "https://github.com/BLUEBERRYP1LL/DownloadSorter/releases/download/v1.0.0/sorter.exe",
+    "hash": "c82bae03a106b4fafbf1a4e6e910474f3d7cb05a737a56803b6a4c7085b77aad",
+    "bin": "sorter.exe",
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/BLUEBERRYP1LL/DownloadSorter/releases/download/v$version/sorter.exe"
+    }
+}

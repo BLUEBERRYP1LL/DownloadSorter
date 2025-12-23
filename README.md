@@ -14,9 +14,21 @@ A command-line tool that automatically organizes your downloads into categorized
 
 ## Installation
 
-1. Download `sorter.exe` from the releases
+### Option 1: Direct Download
+
+1. Download `sorter.exe` from [Releases](https://github.com/BLUEBERRYP1LL/DownloadSorter/releases)
 2. Place it somewhere in your PATH (or run directly)
 3. Run `sorter init` to set up your folder structure
+
+### Option 2: Scoop (Windows Package Manager)
+
+```powershell
+# Add the bucket (first time only)
+scoop bucket add downloadsorter https://github.com/BLUEBERRYP1LL/DownloadSorter
+
+# Install
+scoop install downloadsorter
+```
 
 ## Quick Start
 
@@ -135,7 +147,7 @@ The interactive dashboard (`sorter dashboard`) supports these keyboard shortcuts
 |-----|--------|
 | `1` `2` `3` | Switch between tabs |
 | `Tab` | Next tab |
-| `↑` `↓` | Navigate lists |
+| `Up` `Down` | Navigate lists |
 | `s` | Sort files now |
 | `r` | Refresh display |
 | `?` | Show help |
@@ -147,8 +159,8 @@ The file browser (`sorter browse`) lets you manage sorted files:
 
 | Key | Action |
 |-----|--------|
-| `↑` `↓` or `j` `k` | Navigate files |
-| `←` `→` or `h` `l` | Switch between panels |
+| `Up` `Down` or `j` `k` | Navigate files |
+| `Left` `Right` or `h` `l` | Switch between panels |
 | `Enter` | Open selected file |
 | `p` | Pin file (move to 00_PINNED) |
 | `m` | Move to different category |
@@ -258,7 +270,7 @@ sorter browse Media
 - Make sure the file has been stable for the settle time (default 3 minutes)
 
 **File conflicts?**
-- Files are never overwritten. Duplicates get renamed: `file.pdf` → `file (2).pdf`
+- Files are never overwritten. Duplicates get renamed: `file.pdf` -> `file (2).pdf`
 
 **Want to undo?**
 - Check history: `sorter history`
